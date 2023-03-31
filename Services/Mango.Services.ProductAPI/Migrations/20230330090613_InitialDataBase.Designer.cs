@@ -26,11 +26,11 @@ namespace Mango.Services.ProductAPI.Migrations
 
             modelBuilder.Entity("Mango.Services.ProductAPI.Models.Product", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
@@ -51,7 +51,7 @@ namespace Mango.Services.ProductAPI.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProductId");
 
                     b.ToTable("Products");
                 });

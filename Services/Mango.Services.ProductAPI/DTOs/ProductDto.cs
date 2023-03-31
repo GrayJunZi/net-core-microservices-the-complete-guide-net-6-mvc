@@ -1,14 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Mango.Services.ProductAPI.Models
+namespace Mango.Services.ProductAPI.DTOs
 {
-    public class Product
+    public class ProductDto
     {
-        [Key]
-        public int ProductId { get; set; }
-        [Required]
+        public int Id { get; set; }
         public string Name { get; set; }
-        [Range(1, 1000)]
         public decimal Price { get; set; }
         public string Description { get; set; }
         public string CategoryName { get; set; }
