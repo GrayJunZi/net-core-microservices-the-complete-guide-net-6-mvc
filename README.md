@@ -89,7 +89,7 @@ dotnet add package Microsoft.EntityFrameworkCore.Design
 # 生成迁移文件
 dotnet ef migrations add InitialDataBase -p Mango.Services.ProductAPI -s Mango.Services.ProductAPI
 
-# 更新数据
+# 更新数据库
 dotnet ef database update -p Mango.Services.ProductAPI -s Mango.Services.ProductAPI
 ```
 
@@ -97,3 +97,16 @@ dotnet ef database update -p Mango.Services.ProductAPI -s Mango.Services.Product
 
 - ProductAPI 添加种子数据
 - Web 项目中调用 ProductAPI 接口
+
+1. 为 Product API 迁移数据库
+```
+# 生成迁移文件
+dotnet ef migrations add AddSeedData -p Mango.Services.ProductAPI -s Mango.Services.ProductAPI
+
+# 更新数据库
+dotnet ef database update -p Mango.Services.ProductAPI -s Mango.Services.ProductAPI
+```
+
+### 第三部分
+
+- Product 增删改查操作

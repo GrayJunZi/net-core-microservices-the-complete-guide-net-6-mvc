@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery@3.6.4",
+      "destination": "wwwroot/lib/jquery/",
+      "files": [ "jquery.min.js", "jquery.min.map" ]
+    },
+    {
+      "library": "bootstrap@5.2.3",
+      "destination": "wwwroot/lib/bootstrap/",
+      "files": [ "js/bootstrap.min.js", "js/bootstrap.min.js.map", "css/bootstrap.min.css", "css/bootstrap.min.css.map" ]
+    },
+    {
+      "library": "jquery-validate@1.19.5",
+      "destination": "wwwroot/lib/jquery-validation/",
+      "files": [ "jquery.validate.min.js", "localization/messages_zh.min.js" ]
+    },
+    {
+      "library": "jquery-validation-unobtrusive@4.0.0",
+      "destination": "wwwroot/lib/jquery-validation-unobtrusive/",
+      "files": [ "jquery.validate.unobtrusive.min.js" ]
+    },
+    {
+      "library": "font-awesome@6.4.0",
+      "destination": "wwwroot/lib/font-awesome/",
+      "files": [ "css/all.min.css", "js/all.min.js" ]
+    }
+  ]
+}

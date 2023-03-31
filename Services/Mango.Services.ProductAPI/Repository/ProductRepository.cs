@@ -24,7 +24,7 @@ namespace Mango.Services.ProductAPI.Repository
 
         public async Task<ProductDto> GetProductById(int productId)
         {
-            var product = await _dbContext.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
+            var product = await _dbContext.Products.FirstOrDefaultAsync(x => x.Id == productId);
             return _mapper.Map<ProductDto>(product);
         }
 
@@ -34,7 +34,7 @@ namespace Mango.Services.ProductAPI.Repository
             if (product == null)
                 return null;
 
-            if (product.ProductId > 0)
+            if (product.Id > 0)
             {
                 _dbContext.Products.Update(product);
             }
@@ -48,7 +48,7 @@ namespace Mango.Services.ProductAPI.Repository
 
         public async Task<bool> DeleteProduct(int productId)
         {
-            var product = await _dbContext.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
+            var product = await _dbContext.Products.FirstOrDefaultAsync(x => x.Id == productId);
             if (product == null)
                 return false;
 

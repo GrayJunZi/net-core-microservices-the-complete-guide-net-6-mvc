@@ -23,7 +23,6 @@ public class BaseService : IBaseService
 
             var message = new HttpRequestMessage();
             message.Headers.Add("Accept", "application/json");
-            message.Headers.Add("Content-Type", "application/json");
             message.RequestUri = new Uri(apiRequest.Url);
             if (apiRequest.Data != null)
             {
@@ -51,7 +50,10 @@ public class BaseService : IBaseService
 
             var apiResponse = await client.SendAsync(message);
             var apiContent = await apiResponse.Content.ReadAsStringAsync();
-            var apiResponseDto = JsonSerializer.Deserialize<T>(apiContent);
+            var apiResponseDto = JsonSerializer.Deserialize<T>(apiContent, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
 
             return apiResponseDto;
         }
@@ -65,7 +67,10 @@ public class BaseService : IBaseService
             };
 
             var content = JsonSerializer.Serialize(responseDto);
-            var apiResponseDto = JsonSerializer.Deserialize<T>(content);
+            var apiResponseDto = JsonSerializer.Deserialize<T>(content, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
             return apiResponseDto;
         }
     }

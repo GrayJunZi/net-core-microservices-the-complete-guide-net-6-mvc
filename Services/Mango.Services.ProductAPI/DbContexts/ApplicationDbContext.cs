@@ -19,38 +19,38 @@ public class ApplicationDbContext : DbContext
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            ProductId = 1,
+            Id = 1,
             Name = "Samosa",
             Price = 15,
             Description = "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.",
-            ImageUrl = "",
+            ImageUrl = "/images/11.jpg",
             CategoryName = "Appetizer"
         });
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            ProductId = 2,
+            Id = 2,
             Name = "Paneer Tikka",
             Price = 13.99,
             Description = "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.",
-            ImageUrl = "",
+            ImageUrl = "/images/12.jpg",
             CategoryName = "Appetizer"
         });
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            ProductId = 3,
+            Id = 3,
             Name = "Sweet Pie",
             Price = 10.99,
             Description = "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.",
-            ImageUrl = "",
+            ImageUrl = "/images/13.jpg",
             CategoryName = "Dessert"
         });
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            ProductId = 4,
+            Id = 4,
             Name = "Pav Bhaji",
             Price = 15,
             Description = "Praesent scelerisque, mi sed ultrices condimentum, lacus ipsum viverra massa, in lobortis sapien eros in arcu. Quisque vel lacus ac magna vehicula sagittis ut non lacus.<br/>Sed volutpat tellus lorem, lacinia tincidunt tellus varius nec. Vestibulum arcu turpis, facilisis sed ligula ac, maximus malesuada neque. Phasellus commodo cursus pretium.",
-            ImageUrl = "",
+            ImageUrl = "/images/14.jpg",
             CategoryName = "Entree"
         });
     }
