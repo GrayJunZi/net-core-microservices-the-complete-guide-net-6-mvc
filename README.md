@@ -29,7 +29,7 @@
 ### 第一部分
 
 - 创建项目
-- 创建 Product API
+- 创建产品服务项目 (Product API)
 
 
 1.创建项目解决方案
@@ -134,7 +134,7 @@ dotnet ef database update -p Mango.Services.ProductAPI -s Mango.Services.Product
 
 - 身份认证服务
 
-2.创建 Identity 项目
+1.创建 Identity 项目
 ```bash
 # 进入 Services 文件夹
 cd Services
@@ -149,7 +149,7 @@ cd ..
 dotnet sln add .\Services\Mango.Services.Identity
 ```
 
-3.为 Identity 项目添加引用
+2.为 Identity 项目添加引用
 ```bash
 dotnet add package Duende.IdentityServer.AspNetIdentity
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
@@ -158,7 +158,7 @@ dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
 dotnet add package Microsoft.AspNetCore.Identity.UI
 ```
 
-4.为 Identity 项目迁移数据库
+3.为 Identity 项目迁移数据库
 ```bash
 # 生成迁移文件
 dotnet ef migrations add InitialDataBase -p Mango.Services.Identity -s Mango.Services.Identity
@@ -167,7 +167,7 @@ dotnet ef migrations add InitialDataBase -p Mango.Services.Identity -s Mango.Ser
 dotnet ef database update -p Mango.Services.Identity -s Mango.Services.Identity
 ```
 
-5.为 Web 项目添加引用
+4.为 Web 项目添加引用
 ```bash
 dotnet add package Microsoft.AspNetCore.Authentication
 dotnet add package Microsoft.AspNetCore.Authentication.OpenIdConnect
@@ -177,3 +177,42 @@ dotnet add package System.IdentityModel.Tokens.Jwt
 ### 第五部分
 
 - 首页与详情页
+
+### 第六部分
+
+- 创建购物车项目 (Shopping Cart API)
+
+1.创建 ShoppingCartAPI 项目
+```bash
+# 进入 Services 文件夹
+cd Services
+
+# 创建 webapi 项目
+dotnet new webapi -n Mango.Services.ShoppingCartAPI
+
+# 进入上级目录
+cd ..
+
+# 将项目添加到解决方案中
+dotnet sln add .\Services\Mango.Services.ShoppingCartAPI
+```
+
+2.为 ShoppingCartAPI 项目添加引用
+```bash
+dotnet add package AutoMapper
+dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Swashbuckle.AspNetCore.SwaggerUI
+dotnet add package Swashbuckle.AspNetCore.Annotations
+```
+
+3.为 ShoppingCartAPI 项目迁移数据库
+```bash
+# 生成迁移文件
+dotnet ef migrations add InitialDataBase -p Mango.Services.ShoppingCartAPI -s Mango.Services.ShoppingCartAPI
+
+# 更新数据库
+dotnet ef database update -p Mango.Services.ShoppingCartAPI -s Mango.Services.ShoppingCartAPI
+```
