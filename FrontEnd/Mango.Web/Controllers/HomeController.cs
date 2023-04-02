@@ -10,11 +10,16 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly IProductService _productService;
+    private readonly ICartService _cartService;
 
-    public HomeController(ILogger<HomeController> logger, IProductService productService)
+    public HomeController(
+        ILogger<HomeController> logger,
+        IProductService productService,
+        ICartService cartService)
     {
         _logger = logger;
         _productService = productService;
+        _cartService = cartService;
     }
 
     public async Task<IActionResult> Index()
@@ -40,6 +45,45 @@ public class HomeController : Controller
             product = JSONHelper.Deserialize<ProductDto>(response.Result);
         }
         return View(product);
+    }
+
+    [HttpPost]
+    [Authorize]
+    public async Task<IActionResult> Details(ProductDto productDto)
+    {
+        var cartDto = new CartDto
+        {
+            CartHeader = new CartHeaderDto
+            {
+                UserId = User.Claims.Where(x => x.Type == "sub")?.FirstOrDefault()?.Value,
+            }
+        };
+
+        var cartDetailDto = new CartDetailDto
+        {
+            Count = productDto.Count,
+            ProductId = productDto.Id
+        };
+
+        var accessToken = await HttpContext.GetTokenAsync("access_token");
+        var resp = await _productService.GetProductByIdAsync<ResponseDto>(productDto.Id, accessToken);
+        if (resp?.IsSuccess ?? false)
+        {
+            cartDetailDto.Product = JSONHelper.Deserialize<ProductDto>(resp.Result.ToString());
+        }
+
+        cartDto.CartDetails = new List<CartDetailDto>
+        {
+            cartDetailDto
+        };
+
+        var addToCartResp = await _cartService.AddToCartAsync<ResponseDto>(cartDto, accessToken);
+        if (addToCartResp?.IsSuccess ?? false)
+        {
+            return RedirectToAction(nameof(Index));
+        }
+
+        return View(productDto);
     }
 
     [Authorize]

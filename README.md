@@ -216,3 +216,7 @@ dotnet ef migrations add InitialDataBase -p Mango.Services.ShoppingCartAPI -s Ma
 # 更新数据库
 dotnet ef database update -p Mango.Services.ShoppingCartAPI -s Mango.Services.ShoppingCartAPI
 ```
+
+### 第七部分
+
+- Web项目添加购物车功能
