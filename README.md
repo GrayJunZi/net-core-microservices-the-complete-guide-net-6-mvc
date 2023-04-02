@@ -220,3 +220,7 @@ dotnet ef database update -p Mango.Services.ShoppingCartAPI -s Mango.Services.Sh
 ### 第七部分
 
 - Web项目添加购物车功能
+
+### 第八部分
+
+- Web项目完善购物车功能

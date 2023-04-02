@@ -23,6 +23,7 @@ public class CartController : ControllerBase
         try
         {
             var cartDto = await _cartRepository.GetCartByUserId(userId);
+            _response.IsSuccess = true;
             _response.Result = cartDto;
         }
         catch (Exception ex)
@@ -39,6 +40,7 @@ public class CartController : ControllerBase
         try
         {
             var result = await _cartRepository.CreateUpdateCart(cartDto);
+            _response.IsSuccess = true;
             _response.Result = result;
         }
         catch (Exception ex)
@@ -55,6 +57,7 @@ public class CartController : ControllerBase
         try
         {
             var result = await _cartRepository.CreateUpdateCart(cartDto);
+            _response.IsSuccess = true;
             _response.Result = result;
         }
         catch (Exception ex)
@@ -66,11 +69,12 @@ public class CartController : ControllerBase
     }
 
     [HttpPost("{cartId}")]
-    public async Task<IActionResult> RemoveCart([FromBody] int cartId)
+    public async Task<IActionResult> RemoveCart(int cartId)
     {
         try
         {
             var isSuccess = await _cartRepository.RemoveFromCart(cartId);
+            _response.IsSuccess = true;
             _response.Result = isSuccess;
         }
         catch (Exception ex)

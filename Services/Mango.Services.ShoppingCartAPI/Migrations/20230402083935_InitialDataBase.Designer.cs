@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Mango.Services.ShoppingCartAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230402061342_InitialDataBase")]
+    [Migration("20230402083935_InitialDataBase")]
     partial class InitialDataBase
     {
         /// <inheritdoc />
@@ -59,7 +59,6 @@ namespace Mango.Services.ShoppingCartAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CouponCode")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")

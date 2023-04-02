@@ -14,7 +14,6 @@ public class MappingConfig
             config.CreateMap<CartHeaderDto, CartHeader>().ReverseMap();
             config.CreateMap<CartDetailDto, CartDetail>().ReverseMap();
             config.CreateMap<CartDto, Cart>().ReverseMap();
-
         });
         return mappingConfig;
     }
