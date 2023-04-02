@@ -224,3 +224,42 @@ dotnet ef database update -p Mango.Services.ShoppingCartAPI -s Mango.Services.Sh
 ### 第八部分
 
 - Web项目完善购物车功能
+
+### 第九部分
+
+- 创建优惠券项目 (Coupon API)
+
+1.创建 CouponAPI 项目
+```bash
+# 进入 Services 文件夹
+cd Services
+
+# 创建 webapi 项目
+dotnet new webapi -n Mango.Services.CouponAPI
+
+# 进入上级目录
+cd ..
+
+# 将项目添加到解决方案中
+dotnet sln add .\Services\Mango.Services.CouponAPI
+```
+
+2.为 CouponAPI 项目添加引用
+```bash
+dotnet add package AutoMapper
+dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Swashbuckle.AspNetCore.SwaggerUI
+dotnet add package Swashbuckle.AspNetCore.Annotations
+```
+
+3.为 CouponAPI 项目迁移数据库
+```bash
+# 生成迁移文件
+dotnet ef migrations add InitialDataBase -p Mango.Services.CouponAPI -s Mango.Services.CouponAPI
+
+# 更新数据库
+dotnet ef database update -p Mango.Services.CouponAPI -s Mango.Services.CouponAPI
+```
