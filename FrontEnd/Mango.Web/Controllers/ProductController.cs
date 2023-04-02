@@ -22,7 +22,7 @@ public class ProductController : Controller
         var response = await _productService.GetAllProductsAsync<ResponseDto>(token);
         if (response?.IsSuccess ?? false)
         {
-            productList = Deserialize<List<ProductDto>>(response.Result);
+            productList = JSONHelper.Deserialize<List<ProductDto>>(response.Result);
         }
         return View(productList);
     }
@@ -56,7 +56,7 @@ public class ProductController : Controller
         var response = await _productService.GetProductByIdAsync<ResponseDto>(id, token);
         if (response?.IsSuccess ?? false)
         {
-            var productDto = Deserialize<ProductDto>(response.Result);
+            var productDto = JSONHelper.Deserialize<ProductDto>(response.Result);
             return View(productDto);
         }
         return NotFound();
@@ -85,7 +85,7 @@ public class ProductController : Controller
         var response = await _productService.GetProductByIdAsync<ResponseDto>(id, token);
         if (response?.IsSuccess ?? false)
         {
-            var productDto = Deserialize<ProductDto>(response.Result);
+            var productDto = JSONHelper.Deserialize<ProductDto>(response.Result);
             return View(productDto);
         }
         return NotFound();
@@ -107,7 +107,11 @@ public class ProductController : Controller
         return View(productDto);
     }
 
-    private T Deserialize<T>(object json)
+}
+
+public static class JSONHelper
+{
+    public static T Deserialize<T>(object json)
     {
         return JsonSerializer.Deserialize<T>(json.ToString(), new JsonSerializerOptions
         {

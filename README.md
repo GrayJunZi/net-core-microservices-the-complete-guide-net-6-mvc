@@ -173,3 +173,7 @@ dotnet add package Microsoft.AspNetCore.Authentication
 dotnet add package Microsoft.AspNetCore.Authentication.OpenIdConnect
 dotnet add package System.IdentityModel.Tokens.Jwt
 ```
+
+### 第五部分
+
+- 首页与详情页

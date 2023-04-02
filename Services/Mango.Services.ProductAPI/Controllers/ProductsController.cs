@@ -18,7 +18,6 @@ public class ProductsController : ControllerBase
         _response = new ResponseDto();
     }
 
-    [Authorize]
     [HttpGet]
     public async Task<IActionResult> Get()
     {
@@ -36,7 +35,6 @@ public class ProductsController : ControllerBase
         return Ok(_response);
     }
 
-    [Authorize]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
