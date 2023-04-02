@@ -1,5 +1,6 @@
 ﻿using Mango.Web.DTOs;
 using Mango.Web.Services.IServices;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
@@ -16,8 +17,9 @@ public class ProductController : Controller
 
     public async Task<IActionResult> Index()
     {
+        var token = await HttpContext.GetTokenAsync("access_token");
         var productList = new List<ProductDto>();
-        var response = await _productService.GetAllProductsAsync<ResponseDto>();
+        var response = await _productService.GetAllProductsAsync<ResponseDto>(token);
         if (response?.IsSuccess ?? false)
         {
             productList = Deserialize<List<ProductDto>>(response.Result);
@@ -37,7 +39,8 @@ public class ProductController : Controller
     {
         if (ModelState.IsValid)
         {
-            var response = await _productService.CreateProductAsync<ResponseDto>(productDto);
+            var token = await HttpContext.GetTokenAsync("access_token");
+            var response = await _productService.CreateProductAsync<ResponseDto>(productDto, token);
             if (response?.IsSuccess ?? false)
             {
                 return RedirectToAction(nameof(Index));
@@ -49,7 +52,8 @@ public class ProductController : Controller
     [HttpGet]
     public async Task<IActionResult> Edit(int id)
     {
-        var response = await _productService.GetProductByIdAsync<ResponseDto>(id);
+        var token = await HttpContext.GetTokenAsync("access_token");
+        var response = await _productService.GetProductByIdAsync<ResponseDto>(id, token);
         if (response?.IsSuccess ?? false)
         {
             var productDto = Deserialize<ProductDto>(response.Result);
@@ -64,7 +68,8 @@ public class ProductController : Controller
     {
         if (ModelState.IsValid)
         {
-            var response = await _productService.UpdateProductAsync<ResponseDto>(productDto);
+            var token = await HttpContext.GetTokenAsync("access_token");
+            var response = await _productService.UpdateProductAsync<ResponseDto>(productDto, token);
             if (response?.IsSuccess ?? false)
             {
                 return RedirectToAction(nameof(Index));
@@ -76,7 +81,8 @@ public class ProductController : Controller
     [HttpGet]
     public async Task<IActionResult> Delete(int id)
     {
-        var response = await _productService.GetProductByIdAsync<ResponseDto>(id);
+        var token = await HttpContext.GetTokenAsync("access_token");
+        var response = await _productService.GetProductByIdAsync<ResponseDto>(id, token);
         if (response?.IsSuccess ?? false)
         {
             var productDto = Deserialize<ProductDto>(response.Result);
@@ -91,7 +97,8 @@ public class ProductController : Controller
     {
         if (ModelState.IsValid)
         {
-            var response = await _productService.DeleteProductAsync<ResponseDto>(productDto.Id);
+            var token = await HttpContext.GetTokenAsync("access_token");
+            var response = await _productService.DeleteProductAsync<ResponseDto>(productDto.Id, token);
             if (response?.IsSuccess ?? false)
             {
                 return RedirectToAction(nameof(Index));

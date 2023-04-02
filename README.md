@@ -33,12 +33,12 @@
 
 
 1.创建项目解决方案
-```
+```bash
 dotnet new sln -n MangoRestaurant
 ```
 
 2.创建Web项目
-```
+```bash
 # 创建 FrontEnd 文件夹
 md FrontEnd
 
@@ -56,7 +56,7 @@ dotnet sln add .\FrontEnd\Mango.Web
 ```
 
 3.创建 Product API 项目
-```
+```bash
 # 创建 Services 文件夹
 md Services
 
@@ -73,8 +73,8 @@ cd ..
 dotnet sln add .\Services\Mango.Services.ProductAPI
 ```
 
-4. 为 Product API 项目添加引用
-```
+4.为 Product API 项目添加引用
+```bash
 dotnet add package AutoMapper
 dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection
 dotnet add package Swashbuckle.AspNetCore.SwaggerUI
@@ -84,8 +84,8 @@ dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet add package Microsoft.EntityFrameworkCore.Design
 ```
 
-5. 为 Product API 迁移数据库
-```
+5.为 Product API 迁移数据库
+```bash
 # 生成迁移文件
 dotnet ef migrations add InitialDataBase -p Mango.Services.ProductAPI -s Mango.Services.ProductAPI
 
@@ -98,8 +98,8 @@ dotnet ef database update -p Mango.Services.ProductAPI -s Mango.Services.Product
 - ProductAPI 添加种子数据
 - Web 项目中调用 ProductAPI 接口
 
-1. 为 Product API 迁移数据库
-```
+1.为 Product API 迁移数据库
+```bash
 # 生成迁移文件
 dotnet ef migrations add AddSeedData -p Mango.Services.ProductAPI -s Mango.Services.ProductAPI
 
@@ -110,3 +110,66 @@ dotnet ef database update -p Mango.Services.ProductAPI -s Mango.Services.Product
 ### 第三部分
 
 - Product 增删改查操作
+
+### 第四部分
+
+- OAuth2
+    1. Oauth2是一个开放协议，允许在web、移动和桌面应用程序中以简单和标准的方法进行安全授权。
+    2. OAuth2处理授权。
+    3. Oauth2使用access_token，客户端应用程序可以使用该token访问api。
+    4. 不同应用类型的端点。
+
+- OpenID Connect
+    1. OpenID Connect 是 OAuth2协议之上的一个简单的身份层。
+    2. 使用 OpenID Connect 应用程序可以在需要时在访问令牌旁边接收一个身份令牌。
+    3. 它定义了不同类型的客户端应用程序如何安全地从安全令牌服务获取这些令牌。
+
+- Identity Server
+    1. Client - 客户端是一种从 IdentityServer 请求令牌的软件，用于对用户进行身份验证或访问资源。
+    2. API Resource - API资源代表了客户端想要调用的功能，通常被建模为 Web APIs。
+    3. Identity Resource - 关于用户的身份信息(aka claims), e.g. 电子邮件地址的名称。
+    4. Identity Token - 标识令牌表示身份验证过程的结果。
+    5. Access Token - 访问令牌允许访问API资源。
+
+
+- 身份认证服务
+
+2.创建 Identity 项目
+```bash
+# 进入 Services 文件夹
+cd Services
+
+# 创建 mvc 项目
+dotnet new mvc -n Mango.Services.Identity
+
+# 进入上级目录
+cd ..
+
+# 将项目添加到解决方案中
+dotnet sln add .\Services\Mango.Services.Identity
+```
+
+3.为 Identity 项目添加引用
+```bash
+dotnet add package Duende.IdentityServer.AspNetIdentity
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+dotnet add package Microsoft.AspNetCore.Identity.UI
+```
+
+4.为 Identity 项目迁移数据库
+```bash
+# 生成迁移文件
+dotnet ef migrations add InitialDataBase -p Mango.Services.Identity -s Mango.Services.Identity
+
+# 更新数据库
+dotnet ef database update -p Mango.Services.Identity -s Mango.Services.Identity
+```
+
+5.为 Web 项目添加引用
+```bash
+dotnet add package Microsoft.AspNetCore.Authentication
+dotnet add package Microsoft.AspNetCore.Authentication.OpenIdConnect
+dotnet add package System.IdentityModel.Tokens.Jwt
+```

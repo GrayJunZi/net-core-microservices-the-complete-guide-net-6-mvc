@@ -29,6 +29,11 @@ public class BaseService : IBaseService
                 message.Content = new StringContent(JsonSerializer.Serialize(apiRequest.Data), Encoding.UTF8, "application/json");
             }
 
+            if (!string.IsNullOrWhiteSpace(apiRequest.AccessToken))
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", apiRequest.AccessToken);
+            }
+
             switch (apiRequest.ApiType)
             {
                 case SD.ApiType.GET:
