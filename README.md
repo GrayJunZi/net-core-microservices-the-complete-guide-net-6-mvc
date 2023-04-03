@@ -266,3 +266,16 @@ dotnet ef database update -p Mango.Services.CouponAPI -s Mango.Services.CouponAP
 ### 第十部分
 
 - Web项目完善优惠券功能
+
+### 第十一部分
+
+- 同步通信 (Synchronous Communication)
+    1. 同步通信在相对较小的单体应用程序中从来不是问题，因为它是一个非常简单的概念。
+    2. 客户端向服务器发送请求，服务器响应客户端。
+    3. 同步通信的一个有点是服务接收到接收请求的确认，并执行相应的动作。
+    
+- 异步通信 (Asynchronous Communication)
+    1. 当使用异步通信时，调用服务不等待被调用服务的响应。
+    2. 异步通信还允许一对多通信的可能性，客户端可以同时向多个服务发送消息。
+
+- 支付

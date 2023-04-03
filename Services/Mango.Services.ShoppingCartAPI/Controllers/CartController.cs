@@ -1,4 +1,5 @@
 ﻿using Mango.Services.ShoppingCartAPI.DTOs;
+using Mango.Services.ShoppingCartAPI.Messages;
 using Mango.Services.ShoppingCartAPI.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -119,4 +120,23 @@ public class CartController : ControllerBase
         return Ok(_response);
     }
 
+    [HttpPost]
+    public async Task<IActionResult> Checkout(CheckoutHeaderDto checkoutHeaderDto)
+    {
+        try
+        {
+            var cartDto = await _cartRepository.GetCartByUserId(checkoutHeaderDto.UserId);
+            if (cartDto == null)
+                return BadRequest();
+
+            checkoutHeaderDto.CartDetails = cartDto.CartDetails;
+            _response.IsSuccess = true;
+        }
+        catch (Exception ex)
+        {
+            _response.IsSuccess = false;
+            _response.ErrorMessages = new List<string> { ex.ToString() };
+        }
+        return Ok(_response);
+    }
 }
