@@ -26,6 +26,11 @@
       "library": "font-awesome@6.4.0",
       "destination": "wwwroot/lib/font-awesome/",
       "files": [ "css/all.min.css", "js/all.min.js" ]
+    },
+    {
+      "library": "bootstrap-datepicker@1.9.0",
+      "destination": "wwwroot/lib/bootstrap-datepicker/",
+      "files": [ "css/bootstrap-datepicker.min.css", "js/bootstrap-datepicker.min.js", "locales/bootstrap-datepicker.zh-CN.min.js" ]
     }
   ]
 }

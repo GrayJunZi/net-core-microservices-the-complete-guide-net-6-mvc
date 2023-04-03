@@ -8,7 +8,7 @@
 
 - 为什么选择微服务？(Why Microservices)
     1. 微服务可独立部署。
-    2. 微服务可独立伸缩扩展的。
+    2. 微服务可独立伸缩扩展。
     3. 微服务通过故障隔离(fault isolution)减少停机时间。
     4. 更小的代码库使团队更容易理解代码，从而更容易维护。
 
@@ -28,9 +28,8 @@
 
 ### 第一部分
 
-- 创建项目
+- 初始化项目
 - 创建产品服务项目 (Product API)
-
 
 1.创建项目解决方案
 ```bash
@@ -263,3 +262,7 @@ dotnet ef migrations add InitialDataBase -p Mango.Services.CouponAPI -s Mango.Se
 # 更新数据库
 dotnet ef database update -p Mango.Services.CouponAPI -s Mango.Services.CouponAPI
 ```
+
+### 第十部分
+
+- Web项目完善优惠券功能
