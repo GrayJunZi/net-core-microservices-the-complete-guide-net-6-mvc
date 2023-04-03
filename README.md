@@ -279,3 +279,40 @@ dotnet ef database update -p Mango.Services.CouponAPI -s Mango.Services.CouponAP
     2. 异步通信还允许一对多通信的可能性，客户端可以同时向多个服务发送消息。
 
 - 支付
+
+### 第十二部分
+
+- 队列 (Queues)
+    1. 消息被发送到队列和从队列接收。队列存储消息，直到接收应用程序可用于接收和处理消息。队列中的消息是有序的，并在到达时加上时间戳。
+
+- 主题 (Topics & Subscripbers)
+    1. 还可以使用主题来发送和接收消息。
+    2. 队列通常用于点对点通信，而主题在发布/订阅(publish/subscribe)场景中也很有用。
+    3. 主题可以有多个独立的订阅，这些订阅附加到主题，否则就像接收方的队列一样工作。
+    4. 主题的订阅者可以接收发送到该主题的每个消息的副本。
+    5. 订阅是命名实体
+
+1.创建 MessageBus 项目
+```bash
+# 创建 Integration 文件夹
+md Integration
+
+# 进入 Integration 文件夹
+cd Integration
+
+# 创建类库项目
+dotnet new classlib -n Mango.MessageBus
+
+# 进入上级目录
+cd ..
+
+# 将项目添加到解决方案中
+dotnet sln add .\Integration\Mango.MessageBus
+```
+
+
+
+2.为 MessageBus 项目添加引用
+```bash
+dotnet add package Azure.Messaging.ServiceBus
+```
