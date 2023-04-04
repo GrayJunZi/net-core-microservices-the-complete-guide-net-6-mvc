@@ -316,3 +316,43 @@ dotnet sln add .\Integration\Mango.MessageBus
 ```bash
 dotnet add package Azure.Messaging.ServiceBus
 ```
+
+### 第十三部份
+
+- 创建订单服务 (Order API)
+- 订单异步通信
+
+1.创建 OrderAPI 项目
+```bash
+# 进入 Services 文件夹
+cd Services
+
+# 创建 webapi 项目
+dotnet new webapi -n Mango.Services.OrderAPI
+
+# 进入上级目录
+cd ..
+
+# 将项目添加到解决方案中
+dotnet sln add .\Services\Mango.Services.OrderAPI
+```
+
+2.为 OrderAPI 项目添加引用
+```bash
+dotnet add package AutoMapper
+dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Swashbuckle.AspNetCore.SwaggerUI
+dotnet add package Swashbuckle.AspNetCore.Annotations
+```
+
+3.为 OrderAPI 项目迁移数据库
+```bash
+# 生成迁移文件
+dotnet ef migrations add InitialDataBase -p Mango.Services.OrderAPI -s Mango.Services.OrderAPI
+
+# 更新数据库
+dotnet ef database update -p Mango.Services.OrderAPI -s Mango.Services.OrderAPI
+```
