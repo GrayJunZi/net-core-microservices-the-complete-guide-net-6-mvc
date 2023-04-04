@@ -356,3 +356,7 @@ dotnet ef migrations add InitialDataBase -p Mango.Services.OrderAPI -s Mango.Ser
 # 更新数据库
 dotnet ef database update -p Mango.Services.OrderAPI -s Mango.Services.OrderAPI
 ```
+
+### 第十四部分
+
+- 同步通信

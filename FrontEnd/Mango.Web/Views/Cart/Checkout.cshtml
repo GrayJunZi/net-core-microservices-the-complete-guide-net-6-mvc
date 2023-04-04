@@ -4,6 +4,11 @@
     <style rel="stylesheet" href="~/lib/bootstrap-datepicker/css/bootstrap-datepicker.min.css"></style>
 }
 
+@if(ViewBag.Error != null)
+{
+    <div class="alert alert-warning" role="alert">@ViewBag.Error</div>
+}
+
 @if (Model?.CartDetails?.Any() ?? false)
 {
     <form method="post">

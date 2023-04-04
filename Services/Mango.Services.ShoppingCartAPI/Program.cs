@@ -17,7 +17,7 @@ IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ICartRepository, CartRepository>();
-builder.Services.AddScoped<IMessageBus,AzureServiceBusMessageBus>();
+builder.Services.AddScoped<IMessageBus, AzureServiceBusMessageBus>();
 
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
@@ -36,6 +36,11 @@ builder.Services.AddAuthorization(options =>
         policy.RequireAuthenticatedUser();
         policy.RequireClaim("scope", "mango");
     });
+});
+
+builder.Services.AddHttpClient("CouponAPI", httpClient =>
+{
+    httpClient.BaseAddress = new Uri(builder.Configuration["ServiceUrls:CouponAPI"]);
 });
 
 builder.Services.AddControllers();

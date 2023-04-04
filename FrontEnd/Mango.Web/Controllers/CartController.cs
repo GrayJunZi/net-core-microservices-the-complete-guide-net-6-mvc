@@ -1,7 +1,9 @@
-﻿using Mango.Web.DTOs;
+﻿using Mango.Web.Common;
+using Mango.Web.DTOs;
 using Mango.Web.Services.IServices;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Mango.Web.Controllers;
 
@@ -79,6 +81,11 @@ public class CartController : Controller
         {
             var accessToken = await HttpContext.GetTokenAsync("access_token");
             var response = await _cartService.CheckoutAsync<ResponseDto>(cartDto.CartHeader, accessToken);
+            if (!response?.IsSuccess ?? true)
+            {
+                ViewBag.Error = response.DisplayMessage;
+                return RedirectToAction(nameof(Checkout));
+            }
             return RedirectToAction(nameof(Confirmation));
         }
         catch (Exception ex)
@@ -102,7 +109,7 @@ public class CartController : Controller
         CartDto cartDto = null;
         if (response?.IsSuccess ?? false)
         {
-            cartDto = JSONHelper.Deserialize<CartDto>(response.Result.ToString());
+            cartDto = JsonHelper.Deserialize<CartDto>(response.Result.ToString());
         }
 
         if (cartDto?.CartHeader != null)

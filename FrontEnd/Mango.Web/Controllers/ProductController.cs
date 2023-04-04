@@ -108,14 +108,3 @@ public class ProductController : Controller
     }
 
 }
-
-public static class JSONHelper
-{
-    public static T Deserialize<T>(object json)
-    {
-        return JsonSerializer.Deserialize<T>(json.ToString(), new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true,
-        });
-    }
-}
