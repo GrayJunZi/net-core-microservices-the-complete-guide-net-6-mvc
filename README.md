@@ -417,3 +417,42 @@ cd ..
 # 将项目添加到解决方案中
 dotnet sln add .\Payments\Mango.PaymentProcessor
 ```
+
+### 第十六部份
+
+- 创建邮件服务
+
+1.创建 Email 项目
+```bash
+# 进入 Services 文件夹
+cd Services
+
+# 创建 webapi 项目
+dotnet new webapi -n Mango.Services.Email
+
+# 进入上级目录  
+cd ..
+
+# 将项目添加到解决方案中
+dotnet sln add .\Services\Mango.Services.Email
+```
+
+2.为 Email 项目添加引用
+```bash
+dotnet add package AutoMapper
+dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Swashbuckle.AspNetCore.SwaggerUI
+dotnet add package Swashbuckle.AspNetCore.Annotations
+```
+
+3.为 PaymentAPI 项目迁移数据库
+```bash
+# 生成迁移文件
+dotnet ef migrations add InitialDataBase -p Mango.Services.PaymentAPI -s Mango.Services.PaymentAPI
+
+# 更新数据库
+dotnet ef database update -p Mango.Services.PaymentAPI -s Mango.Services.PaymentAPI
+```
