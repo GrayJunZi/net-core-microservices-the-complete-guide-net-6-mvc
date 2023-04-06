@@ -448,11 +448,40 @@ dotnet add package Swashbuckle.AspNetCore.SwaggerUI
 dotnet add package Swashbuckle.AspNetCore.Annotations
 ```
 
-3.为 PaymentAPI 项目迁移数据库
+3.为 Email 项目迁移数据库
 ```bash
 # 生成迁移文件
-dotnet ef migrations add InitialDataBase -p Mango.Services.PaymentAPI -s Mango.Services.PaymentAPI
+dotnet ef migrations add InitialDataBase -p Mango.Services.Email -s Mango.Services.Email
 
 # 更新数据库
-dotnet ef database update -p Mango.Services.PaymentAPI -s Mango.Services.PaymentAPI
+dotnet ef database update -p Mango.Services.Email -s Mango.Services.Email
+```
+
+### 第十七部分
+
+- 网关
+    1. 服务的单点入口
+    2. 共享功能
+    3. 大的应用程序
+
+1.创建 Gateway 项目
+```bash
+# 创建 Gateway 文件夹
+md Gateway
+
+# 创建 webapi 项目
+dotnet new webapi -n Mango.Gateway
+
+# 进入上级目录  
+cd ..
+
+# 将项目添加到解决方案中
+dotnet sln add .\Gateway\Mango.Gateway
+```
+
+2.为 Email 项目添加引用
+```bash
+dotnet add package IdentityModel
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+dotnet add package Ocelot
 ```
