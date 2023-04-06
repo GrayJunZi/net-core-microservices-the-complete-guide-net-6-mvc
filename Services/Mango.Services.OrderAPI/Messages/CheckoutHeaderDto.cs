@@ -1,6 +1,6 @@
 ﻿namespace Mango.Services.OrderAPI.Messages;
 
-public class CheckoutHeaderDto 
+public class CheckoutHeaderDto
 {
     public int Id { get; set; }
     public string UserId { get; set; }

@@ -152,6 +152,7 @@ public class CartController : ControllerBase
             checkoutHeaderDto.CartDetails = cartDto.CartDetails;
 
             await _messageBus.PublishMessage(checkoutHeaderDto, "checkoutmessagetopic");
+            await _cartRepository.ClearCart(checkoutHeaderDto.UserId);
 
             _response.IsSuccess = true;
         }

@@ -1,10 +1,11 @@
 using AutoMapper;
 using Mango.MessageBus;
-using Mango.Services.OrderAPI.DbContexts;
-using Mango.Services.OrderAPI.Extensions;
-using Mango.Services.OrderAPI.Messaging;
-using Mango.Services.OrderAPI.Repository;
-using Mango.Services.ProductAPI;
+using Mango.PaymentProcessor;
+using Mango.Services.PaymentAPI;
+using Mango.Services.PaymentAPI.DbContexts;
+using Mango.Services.PaymentAPI.Extensions;
+using Mango.Services.PaymentAPI.Messaging;
+using Mango.Services.PaymentAPI.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -19,9 +20,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddSingleton<IAzureServiceBusConsumer, AzureServiceBusConsumer>();
 builder.Services.AddSingleton<IMessageBus, AzureServiceBusMessageBus>();
+builder.Services.AddSingleton<IProcessPayment, ProcessPayment>();
 
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
