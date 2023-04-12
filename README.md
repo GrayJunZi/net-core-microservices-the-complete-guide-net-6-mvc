@@ -469,6 +469,9 @@ dotnet ef database update -p Mango.Services.Email -s Mango.Services.Email
 # 创建 Gateway 文件夹
 md Gateway
 
+# 进入 Gateway 文件夹
+cd Gateway
+
 # 创建 webapi 项目
 dotnet new webapi -n Mango.Gateway
 
@@ -485,3 +488,7 @@ dotnet add package IdentityModel
 dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
 dotnet add package Ocelot
 ```
+
+# 完结
+
+评价：尽管课程是完整的，但也只是很基础的知识。
